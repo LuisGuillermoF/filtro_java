@@ -1,8 +1,13 @@
 package controller;
 
+import entity.CoderEntity;
 import entity.ContratacionEntity;
+import entity.EmpresaEntity;
+import entity.VacanteEntity;
 import model.CoderModel;
 import model.ContratacionModel;
+import model.EmpresaModel;
+import model.VacanteModel;
 
 import javax.swing.*;
 
@@ -43,7 +48,16 @@ public class ContratacionController {
         ContratacionModel objModel = new ContratacionModel();
         ContratacionEntity objContrato = new ContratacionEntity();
         CoderController objCoder = new CoderController();
+
+        CoderEntity objCoderr = new CoderEntity();
+
+        VacanteEntity objVacancy = new VacanteEntity();
+
+        EmpresaEntity objEmpresa = new EmpresaEntity();
+
         VacanteController objVacante = new VacanteController();
+
+
 
         String listCoder = objCoder.getAllString();
         String listVacantes = objVacante.getAllString();
@@ -63,7 +77,8 @@ public class ContratacionController {
 
         objModel.insert(objContrato);
 
-        JOptionPane.showMessageDialog(null,objContrato.toString());
+        JOptionPane.showMessageDialog(null, "Vacante (Titulo: "+objVacancy.getTitulo()+" descripcion "+ objVacancy.getDescripcion()+ ")\nEmpresa: (nombre "+ objEmpresa.getNombre() +" ubicacion "+objEmpresa.getUbicacion()+")\nCoder: (nombre "+ objCoderr.getNombre()+ " Apellidos "+objCoderr.getApellido()+" documento "+objCoderr.getDni() +" tecnologia "+ objCoderr.getHoja_de_vida() + "Salario coder "+ objContrato.getSalario());
+
     }
 
     public static void update(){
@@ -109,4 +124,6 @@ public class ContratacionController {
             }
         }
     }
+
+
 }

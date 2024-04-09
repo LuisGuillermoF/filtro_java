@@ -1,6 +1,5 @@
 package model;
 
-import database.CRUD;
 import database.ConfigDB;
 import entity.EmpresaEntity;
 
@@ -44,5 +43,40 @@ public class EmpresaModel  {
         }
 
         return listEmpresas;
+    }
+
+    public EmpresaEntity findByIdEmpresa(int id) {
+
+        Connection objConection = ConfigDB.openConection();
+
+        EmpresaEntity objEmpresa = new EmpresaEntity();
+
+        try {
+
+            String sql = "SELECT * FROM empresa WHERE id = ?;";
+
+            PreparedStatement objprepare = objConection.prepareStatement(sql);
+
+            objprepare.setInt(1, id);
+
+            ResultSet objResult = objprepare.executeQuery();
+            if (objResult.next()) {
+
+                objEmpresa.setId(objResult.getInt("id"));
+                objEmpresa.setSector(objResult.getString("sector"));
+                objEmpresa.setNombre(objResult.getString("nombre"));
+                objEmpresa.setContacto(objResult.getString("contacto"));
+                objEmpresa.setUbicacion(objResult.getString("ubicacion"));
+
+            }
+
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        ConfigDB.closeConnection();
+
+        return objEmpresa;
     }
 }

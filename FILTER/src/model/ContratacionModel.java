@@ -219,4 +219,6 @@ public class ContratacionModel implements CRUD {
 
         return objContrato;
     }
+
+
 }
